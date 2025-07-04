@@ -44,7 +44,7 @@ vi form.html
 git init
 git add .
 git commit -m "First commit"
-git remote add origin https://github.com/Iam-mithran/SaturdayProject
+git remote add origin https://github.com/AnandhanGit/JenkinsPipeline-Project
 git push origin master
 Generate a access Classic token from the GitHub Repo Settings
 
@@ -59,7 +59,7 @@ pipeline {
     stages {
         stage('Pull Code From GitHub') {
             steps {
-                git 'https://github.com/Iam-mithran/SaturdayProject.git'
+                git 'https://github.com/AnandhanGit/JenkinsPipeline-Project.git'
             }
         }
     }
@@ -88,20 +88,20 @@ pipeline {
     stages {
         stage('Pull Code From GitHub') {
             steps {
-                git 'https://github.com/Iam-mithran/SaturdayProject.git'
+                git 'https://github.com/AnandhanGit/JenkinsPipeline-Project.git'
             }
         }
         stage('Build the Docker image') {
             steps {
                 sh 'sudo docker build -t weekendimage /var/lib/jenkins/workspace/weekendproj'
-                sh 'sudo docker tag weekendimage iammithran/weekendimage:latest'
-                sh 'sudo docker tag weekendimage iammithran/weekendimage:${BUILD_NUMBER}'
+                sh 'sudo docker tag weekendimage AnandhanGit/weekendimage:latest'
+                sh 'sudo docker tag weekendimage AnandhanGit/weekendimage:${BUILD_NUMBER}'
             }
         }
         stage('Push the Docker image') {
             steps {
-                sh 'sudo docker image push iammithran/weekendimage:latest'
-                sh 'sudo docker image push iammithran/weekendimage:${BUILD_NUMBER}'
+                sh 'sudo docker image push AnandhanGit/weekendimage:latest'
+                sh 'sudo docker image push AnandhanGit/weekendimage:${BUILD_NUMBER}'
             }
         }
     }
@@ -138,13 +138,13 @@ ssh-keygen
 
 export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=
-export NAME=**mithran**.k8s.local
+export NAME=anandhan.k8s.local
 export KOPS_STATE_STORE=s3://**kops22042022**
 
 ### Create Kubernetes Cluster
 
 kops create cluster --zones ap-south-1a ${NAME}
-kops update cluster --name mithran.k8s.local --yes --admin
+kops update cluster --name anandhan.k8s.local --yes --admin
 
 ## Step 6: Deploy to kubernetes
 
@@ -156,20 +156,20 @@ pipeline {
     stages {
         stage('Pull Code From GitHub') {
             steps {
-                git 'https://github.com/Iam-mithran/SaturdayProject.git'
+                git 'https://github.com/AnandhanGit/JenkinsPipeline-Project.git'
             }
         }
         stage('Build the Docker image') {
             steps {
                 sh 'sudo docker build -t weekendimage /var/lib/jenkins/workspace/weekendproj'
-                sh 'sudo docker tag weekendimage iammithran/weekendimage:latest'
-                sh 'sudo docker tag weekendimage iammithran/weekendimage:${BUILD_NUMBER}'
+                sh 'sudo docker tag weekendimage AnandhanGit/weekendimage:latest'
+                sh 'sudo docker tag weekendimage AnandhanGit/weekendimage:${BUILD_NUMBER}'
             }
         }
         stage('Push the Docker image') {
             steps {
-                sh 'sudo docker image push iammithran/weekendimage:latest'
-                sh 'sudo docker image push iammithran/weekendimage:${BUILD_NUMBER}'
+                sh 'sudo docker image push AnandhanGit/weekendimage:latest'
+                sh 'sudo docker image push AnandhanGit/weekendimage:${BUILD_NUMBER}'
             }
         }
         stage('Deploy on Kubernetes') {
